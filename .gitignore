@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+outputs/
+*.py[cod]
+.DS_Store
+CS379T-Week-1-IP.xls
+CS379T-Week-1-IP.xlsx
+.openai/
+openai/
+.codex/
+.chatgpt/
+AGENTS.md
+CODEX_TASK.md
+*.openai-download-*
