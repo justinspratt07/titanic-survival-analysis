@@ -44,13 +44,19 @@ def run(data_path="CS379T-Week-1-IP.xls", out_dir="outputs"):
     auc = float(roc_auc_score(y_te, proba))
 
     cm = confusion_matrix(y_te, pred)
-    plt.figure(); plt.imshow(cm)
+    plt.figure(); plt.imshow(cm, cmap="Blues", vmin=0, vmax=max(cm.max() * 1.5, 1))
     for i in range(2):
         for j in range(2):
             plt.text(j, i, str(cm[i, j]), ha="center", va="center")
+    plt.xticks([0, 1], ['Did not survive', 'Survived'])
+    plt.yticks([0, 1], ['Did not survive', 'Survived'])
+    plt.xlabel('Predicted outcome')
+    plt.ylabel('Actual outcome')
+    plt.title(f'Titanic survival classification — {len(y_te)} held-out passengers')
     plt.savefig(out_dir / "confusion_matrix.png", dpi=160, bbox_inches="tight")
 
     plt.figure(); RocCurveDisplay.from_predictions(y_te, proba)
+    plt.title('Titanic survival — held-out ROC curve')
     plt.savefig(out_dir / "roc_curve.png", dpi=160, bbox_inches="tight")
 
     feats = model.named_steps["pre"].get_feature_names_out()

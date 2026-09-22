@@ -58,6 +58,10 @@ def run(data_path="CS379T-Week-1-IP.xls", out_dir="outputs"):
     best_k = max(sil_by_k, key=sil_by_k.get)
 
     plt.figure(); plt.plot(ks, sil, marker="o")
+    plt.xticks(ks)
+    plt.xlabel('Number of clusters')
+    plt.ylabel('Silhouette score')
+    plt.title('Titanic passenger clustering — selecting k')
     plt.savefig(out_dir / "silhouette_scores.png", dpi=160, bbox_inches="tight")
 
     labels = KMeans(best_k, random_state=42, n_init=10).fit_predict(xt)
@@ -78,5 +82,9 @@ def run(data_path="CS379T-Week-1-IP.xls", out_dir="outputs"):
 
     p2 = PCA(n_components=2, random_state=42).fit_transform(xt)
     plt.figure(); plt.scatter(p2[:, 0], p2[:, 1], c=labels)
+    plt.xlabel('Principal component 1')
+    plt.ylabel('Principal component 2')
+    plt.title(f'Titanic passenger groups — {best_k} clusters (PCA projection)')
+    plt.colorbar(ticks=list(range(best_k)), label='Cluster ID')
     plt.savefig(out_dir / "clusters_pca.png", dpi=160, bbox_inches="tight")
     return best_k, sil_by_k, profile

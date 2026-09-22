@@ -61,3 +61,9 @@ jupyter notebook notebooks/titanic_analysis.ipynb
 ## Author
 
 [Justin Spratt](https://github.com/justinspratt07)
+
+## Verified academic results
+
+The original CS379 spreadsheet was rerun on 21 September 2026. Logistic Regression produced ROC-AUC 0.867 and accuracy 0.809 on 262 held-out records. K-Means selected three clusters among k=2 through 6 (silhouette 0.335). These are historical benchmark results, not a deployment claim. The dataset remains excluded from version control.
+
+Run scripts from the repository root: `python -c "import sys; sys.path.insert(0, 'src'); from titanic_classification import run; print(run())"`. Replace `titanic_classification` with `titanic_clustering` to generate clustering outputs.
